@@ -1,0 +1,96 @@
+header {
+  display: flex;
+  align-items: center;
+  block-size: 3.969rem;
+  padding: 0.5rem;
+  background-color: var(--prussian-blue);
+}
+
+header .logo-container {
+  padding-inline-end: 0.65rem;
+}
+
+header .logo-container img {
+  inline-size: auto;
+  block-size: 2rem;
+  margin-block-start: 0.4rem;
+}
+
+#search-form {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+}
+
+#search-form input {
+  flex-grow: 1;
+  inline-size: 100%;
+  block-size: 2.5rem;
+  padding-inline-start: 0.5rem;
+  padding-inline-end: 2rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.313rem;
+}
+
+#search-form button {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+}
+
+#search-form button:hover {
+  cursor: pointer;
+}
+
+.account-actions {
+  display: none;
+}
+
+header #shopping-cart {
+  font-size: 1.7rem;
+  padding-inline: 1rem;
+  color: white;
+}
+
+header #side-menu-button {
+  font-size: 1.6rem;
+  padding-inline: 1rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+
+header #side-menu-button:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 1030px) {
+  header {
+    justify-content: center;
+    block-size: 6.25rem;
+  }
+
+  header .logo-container img {
+    content: url(./allgoodsgalaxy-logo-transparent.svg);
+    block-size: 3.125rem;
+  }
+
+  header .logo-container {
+    padding-inline-end: 1.5rem;
+  }
+
+  #search-form {
+    max-inline-size: 31.25rem;
+  }
+
+  #search-form {
+    margin-inline-end: 1.5rem;
+  }
+
+  header #shopping-cart {
+    padding-inline-end: 1.5rem;
+  }
+}
