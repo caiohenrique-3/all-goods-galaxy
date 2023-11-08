@@ -45,10 +45,6 @@ header .logo-container img {
   cursor: pointer;
 }
 
-.account-actions {
-  display: none;
-}
-
 header #shopping-cart {
   font-size: 1.7rem;
   padding-inline: 1rem;

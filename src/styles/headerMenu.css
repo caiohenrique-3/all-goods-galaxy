@@ -1,0 +1,139 @@
+.header-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  inline-size: 100%;
+  block-size: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.header-menu {
+  display: flex;
+  flex-direction: column;
+  block-size: 100vh;
+  padding: 0.5rem;
+  background-color: var(--prussian-blue);
+  color: white;
+  position: relative;
+}
+
+.header-menu .user-header {
+  padding-block-start: 0.5rem;
+  padding-inline-start: 0.5rem;
+  padding-block-end: 1rem;
+  border-block-end: 0.1rem solid var(--ut-orange);
+}
+
+.header-menu .user-header h4 i {
+  font-size: 2rem;
+  padding-inline-end: 0.5rem;
+  vertical-align: middle;
+}
+
+.header-menu .user-header h4 {
+  font-size: 1.1rem;
+}
+
+.header-menu #close-header-menu-button {
+  display: none;
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.header-menu #close-header-menu-button:hover {
+  cursor: pointer;
+  color: var(--selective-yellow);
+}
+
+.header-menu ul {
+  padding: 1rem;
+  padding-block-start: 2rem;
+  list-style: none;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.header-menu ul li a {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+
+.header-menu ul li a i {
+  font-size: 1.3rem;
+  width: 1.3rem;
+  text-align: center;
+  display: inline-block;
+  margin-inline-end: 1.5rem;
+  vertical-align: middle;
+}
+
+.header-menu ul li {
+  display: flex;
+  align-items: center;
+  margin-block-end: 2rem;
+}
+
+.header-menu ul li:last-child {
+  margin-block-end: 5rem;
+}
+
+.header-menu a:hover {
+  color: var(--selective-yellow);
+}
+
+.header-menu .account-actions {
+  position: sticky;
+  bottom: 0;
+}
+
+.header-menu .account-actions button {
+  color: white;
+  background-color: var(--prussian-blue);
+  border-color: var(--prussian-blue);
+  border: none;
+  border-radius: 0.313rem;
+  inline-size: 100%;
+  block-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.header-menu .account-actions button:hover {
+  cursor: pointer;
+  background-color: var(--selective-yellow);
+  color: black;
+}
+
+.header-menu .user-header,
+.header-menu .account-actions {
+  flex: 0 0 auto;
+}
+
+@media (min-width: 1030px) {
+  .header-overlay {
+    display: block;
+  }
+
+  .header-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    inline-size: 28.125rem;
+  }
+
+  .header-menu #close-header-menu-button {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
