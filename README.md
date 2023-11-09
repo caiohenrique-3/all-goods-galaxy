@@ -42,6 +42,7 @@ project:
 - [System Font Stack](https://systemfontstack.com/)
 - [Fork Awesome](https://forkaweso.me/Fork-Awesome/)
 - [Fake Store API](https://fakestoreapi.com/)
+- [Pixabay](https://pixabay.com)
 
 ### License
 
