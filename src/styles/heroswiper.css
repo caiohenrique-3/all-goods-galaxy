@@ -11,12 +11,12 @@
 #hero-swiper-section {
   position: relative;
   inline-size: 100%;
-  max-inline-size: 75rem;
+  max-inline-size: 90rem;
 }
 
 #hero-swiper-section img {
   inline-size: 100%;
-  max-inline-size: 75rem;
+  max-inline-size: 90rem;
   block-size: auto;
   max-block-size: 53.75rem;
   filter: brightness(0.4);
