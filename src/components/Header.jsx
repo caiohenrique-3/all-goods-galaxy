@@ -42,12 +42,19 @@ export default function Header() {
       <header>
         <div className="logo-container">
           <a href="">
-            <img
-              src="./icon.png"
-              alt="Homepage of AllGoodsGalaxy"
-              width="153px"
-              height="97px"
-            />
+            <picture>
+              <source media="(max-width: 1029px)" srcSet="./icon.png" />
+              <source
+                media="(min-width: 1030px)"
+                srcSet="./allgoodsgalaxy-logo-transparent.svg"
+              />
+              <img
+                src="./icon.png"
+                alt="Homepage of AllGoodsGalaxy"
+                width="153px"
+                height="97px"
+              />
+            </picture>
           </a>
         </div>
 
