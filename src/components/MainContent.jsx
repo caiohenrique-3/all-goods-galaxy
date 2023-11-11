@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 // components
 import LimitedTimeOffers from "./LimitedTimeOffers";
+import RecommendedBrands from "./RecommendedBrands";
 
 // css
 import "../styles/main.css";
@@ -21,6 +22,7 @@ export default function MainContent() {
   return (
     <main>
       <LimitedTimeOffers products={allProducts} isDataLoaded={isDataLoaded} />
+      <RecommendedBrands products={allProducts} isDataLoaded={isDataLoaded} />
     </main>
   );
 }

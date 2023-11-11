@@ -1,0 +1,75 @@
+#recommended-brands {
+  inline-size: 100%;
+  max-inline-size: 90rem;
+  margin-block-start: 2rem;
+  margin-block-end: 2.5rem;
+}
+
+#recommended-brands .heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inline-size: 100%;
+  padding-block: 2.5rem;
+  margin-block-end: 1rem;
+  background-color: var(--prussian-blue);
+  color: white;
+}
+
+#recommended-brands .heading h4 {
+  text-transform: uppercase;
+}
+
+#recommended-brands .heading i {
+  padding-inline-end: 0.5rem;
+}
+
+#recommended-brands img {
+  inline-size: 100%;
+  block-size: 150px;
+}
+
+#recommended-brands .brands {
+  text-align: center;
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#recommended-brands .brands li {
+  inline-size: calc(50% - 10px);
+  margin-block-end: 20px;
+}
+
+#recommended-brands .brands h5 {
+  font-size: clamp(1rem, 0.25rem + 1.5vw, 1.3rem);
+  padding-block: 0.25rem;
+}
+
+#recommended-brands .brands a {
+  color: var(--prussian-blue);
+}
+
+#recommended-brands .brands a:hover {
+  font-weight: 700;
+}
+
+#recommended-brands .brands li i {
+  padding-inline-start: 0.4rem;
+  vertical-align: middle;
+}
+
+@media (min-width: 400px) {
+  #recommended-brands .brands a {
+    text-transform: uppercase;
+  }
+}
+
+@media (min-width: 768px) {
+  #recommended-brands .brands li {
+    inline-size: calc(25% - 10px);
+  }
+}
