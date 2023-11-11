@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 // components
 import LimitedTimeOffers from "./LimitedTimeOffers";
 import RecommendedBrands from "./RecommendedBrands";
+import TopRated from "./TopRated";
 
 // css
 import "../styles/main.css";
@@ -22,7 +23,8 @@ export default function MainContent() {
   return (
     <main>
       <LimitedTimeOffers products={allProducts} isDataLoaded={isDataLoaded} />
-      <RecommendedBrands products={allProducts} isDataLoaded={isDataLoaded} />
+      <RecommendedBrands />
+      <TopRated products={allProducts} isDataLoaded={isDataLoaded} />
     </main>
   );
 }
