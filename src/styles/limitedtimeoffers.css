@@ -152,6 +152,27 @@
   opacity: 1;
 }
 
+#limited-time-offers #show-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-block: 2.5rem;
+  color: var(--prussian-blue);
+}
+
+#limited-time-offers #show-all i {
+  vertical-align: middle;
+  padding-inline-end: 0.3rem;
+}
+
+#limited-time-offers #show-all:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
+
 @media (min-width: 480px) {
   #limited-time-offers .product-container {
     block-size: 16.75rem;

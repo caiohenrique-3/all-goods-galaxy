@@ -170,6 +170,7 @@ export default function LimitedTimeOffers(props) {
         >
           <i className="fa fa-angle-left" aria-hidden="true"></i>
         </button>
+
         <button
           type="button"
           onClick={() => handleNavButtonClick("next")}
@@ -178,6 +179,10 @@ export default function LimitedTimeOffers(props) {
           <i className="fa fa-angle-right" aria-hidden="true"></i>
         </button>
       </div>
+
+      <a href="" id="show-all">
+        <i className="fa fa-external-link" aria-hidden="true"></i> Show All
+      </a>
     </section>
   );
 }
