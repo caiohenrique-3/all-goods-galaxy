@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import LimitedTimeOffers from "./LimitedTimeOffers";
 import RecommendedBrands from "./RecommendedBrands";
 import TopRated from "./TopRated";
+import Footer from "./Footer";
 
 // css
 import "../styles/main.css";
@@ -25,6 +26,7 @@ export default function MainContent() {
       <LimitedTimeOffers products={allProducts} isDataLoaded={isDataLoaded} />
       <RecommendedBrands />
       <TopRated products={allProducts} isDataLoaded={isDataLoaded} />
+      <Footer />
     </main>
   );
 }

@@ -1,0 +1,28 @@
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: static;
+  bottom: 0;
+  left: 0;
+  inline-size: 100%;
+  background-color: var(--prussian-blue);
+  color: white;
+  text-align: center;
+  margin-block-start: 6rem;
+  padding: 1rem 0 1rem 0;
+}
+
+footer p {
+  padding-inline-end: 1.5rem;
+}
+
+footer a {
+  color: white;
+  text-underline-offset: 0.3rem;
+  text-transform: uppercase;
+}
+
+footer a:hover {
+  color: var(--ut-orange);
+}
