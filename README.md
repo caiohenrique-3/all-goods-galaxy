@@ -1,6 +1,11 @@
 # AllGoodsGalaxy
 
 Prototype of an e-commerce website.
+[Live demo](https://all-goods-galaxy.vercel.app/)
+
+## Preview
+
+![Screenshot1](src/assets/showcase.png)
 
 ### Running on your machine
 
