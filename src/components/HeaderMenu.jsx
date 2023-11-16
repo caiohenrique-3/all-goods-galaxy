@@ -1,5 +1,6 @@
 // dependencies
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // css
 import "../styles/headerMenu.css";
@@ -85,7 +86,9 @@ export default function HeaderMenu(props) {
 
       <div className="account-actions">
         <button type="button" id="login-button">Login</button>
-        <button type="button" id="register-button">Register</button>
+        <Link to="/register">
+          <button type="button" id="register-button">Register</button>
+        </Link>
       </div>
     </section>
   );
