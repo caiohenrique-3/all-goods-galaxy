@@ -18,6 +18,15 @@ export default function RegisterPage() {
     zipcode: "",
   });
 
+  const [validationMessages, setValidationMessages] = useState({
+    email: "",
+    username: "",
+    password: "",
+    phone: "",
+    number: "",
+    zipcode: "",
+  });
+
   // Update form data as the user types
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +34,130 @@ export default function RegisterPage() {
       ...formData,
       [name]: value,
     });
+
+    // Real-time validation
+    validateInput(name, value);
   };
+
+  function validateInput(name, value) {
+    switch (name) {
+      case "email":
+        setValidationMessages((prevMessages) => ({
+          ...prevMessages,
+          email: isValidEmail(value) ? "" : "Invalid email format",
+        }));
+        break;
+
+      case "username":
+        setValidationMessages((prevMessages) => ({
+          ...prevMessages,
+          username: isValidUsername(value) ? "" : "Invalid username format",
+        }));
+        break;
+
+      case "password":
+        setValidationMessages((prevMessages) => ({
+          ...prevMessages,
+          password: isValidPassword(value)
+            ? ""
+            : "Password should be at least 8 characters",
+        }));
+        break;
+
+      case "firstName":
+      case "lastName":
+        setValidationMessages((prevMessages) => ({
+          ...prevMessages,
+          [name]: isValidName(value) ? "" : "Invalid characters in the name.",
+        }));
+        break;
+
+      case "phone":
+        setValidationMessages((prevMessages) => ({
+          ...prevMessages,
+          phone: isValidPhoneNumber(value)
+            ? ""
+            : "Phone number should be 10 digits long and only numeric characters",
+        }));
+        break;
+
+      case "city":
+        setValidationMessages((prevMessages) => ({
+          ...prevMessages,
+          city: isValidName(value) ? "" : "Invalid characters in the city",
+        }));
+        break;
+
+      case "street":
+        setValidationMessages((prevMessages) => ({
+          ...prevMessages,
+          street: isValidStreet(value)
+            ? ""
+            : "Invalid characters in the street",
+        }));
+        break;
+
+      case "number":
+        setValidationMessages((prevMessages) => ({
+          ...prevMessages,
+          number: isValidStreetNumber(value)
+            ? ""
+            : "Invalid characters in street number",
+        }));
+        break;
+
+      case "zipcode":
+        setValidationMessages((prevMessages) => ({
+          ...prevMessages,
+          zipcode: isValidZipCode(value)
+            ? ""
+            : "Zip code should be five numeric digits",
+        }));
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function isValidUsername(username) {
+    const usernameRegex = /^\w+$/;
+    return usernameRegex.test(username);
+  }
+
+  function isValidPassword(password) {
+    return password.length >= 8;
+  }
+
+  function isValidName(name) {
+    const nameRegex = /^[A-Za-z\s\-']+$/;
+    return nameRegex.test(name);
+  }
+
+  function isValidPhoneNumber(phone) {
+    const phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phone);
+  }
+
+  function isValidStreet(street) {
+    const streetRegex = /^[A-Za-z0-9\s\-',.#&]+$/;
+    return streetRegex.test(street);
+  }
+
+  function isValidStreetNumber(streetNumber) {
+    const streetNumberRegex = /^\d+$/;
+    return streetNumberRegex.test(streetNumber);
+  }
+
+  function isValidZipCode(zipCode) {
+    const zipCodeRegex = /^\d{5}$/;
+    return zipCodeRegex.test(zipCode);
+  }
 
   // Handle form submission
   const handleSubmit = (e) => {
@@ -61,6 +193,16 @@ export default function RegisterPage() {
               value={formData.email}
               onChange={handleInputChange}
             />
+
+            {validationMessages.email != ""
+              ? (
+                <div className="error-message">
+                  <i className="fa fa-exclamation-triangle" aria-hidden="true">
+                  </i>{" "}
+                  {validationMessages.email}
+                </div>
+              )
+              : ""}
           </div>
 
           <div className="form-group">
@@ -75,6 +217,16 @@ export default function RegisterPage() {
               value={formData.username}
               onChange={handleInputChange}
             />
+
+            {validationMessages.username != ""
+              ? (
+                <div className="error-message">
+                  <i className="fa fa-exclamation-triangle" aria-hidden="true">
+                  </i>{" "}
+                  {validationMessages.username}
+                </div>
+              )
+              : ""}
           </div>
 
           <div className="form-group">
@@ -89,6 +241,14 @@ export default function RegisterPage() {
               value={formData.password}
               onChange={handleInputChange}
             />
+
+            {validationMessages.password !== "" && (
+              <div className="error-message">
+                <i className="fa fa-exclamation-triangle" aria-hidden="true">
+                </i>{" "}
+                {validationMessages.password}
+              </div>
+            )}
           </div>
 
           <div className="form-group">
@@ -101,6 +261,16 @@ export default function RegisterPage() {
               value={formData.firstName}
               onChange={handleInputChange}
             />
+
+            {validationMessages.firstName != ""
+              ? (
+                <div className="error-message">
+                  <i className="fa fa-exclamation-triangle" aria-hidden="true">
+                  </i>{" "}
+                  {validationMessages.firstName}
+                </div>
+              )
+              : ""}
           </div>
 
           <div className="form-group">
@@ -113,6 +283,16 @@ export default function RegisterPage() {
               value={formData.lastName}
               onChange={handleInputChange}
             />
+
+            {validationMessages.lastName != ""
+              ? (
+                <div className="error-message">
+                  <i className="fa fa-exclamation-triangle" aria-hidden="true">
+                  </i>{" "}
+                  {validationMessages.lastName}
+                </div>
+              )
+              : ""}
           </div>
 
           <div className="form-group">
@@ -127,6 +307,16 @@ export default function RegisterPage() {
               value={formData.phone}
               onChange={handleInputChange}
             />
+
+            {validationMessages.phone != ""
+              ? (
+                <div className="error-message">
+                  <i className="fa fa-exclamation-triangle" aria-hidden="true">
+                  </i>{" "}
+                  {validationMessages.phone}
+                </div>
+              )
+              : ""}
           </div>
 
           <h2>Address</h2>
@@ -141,6 +331,16 @@ export default function RegisterPage() {
               value={formData.city}
               onChange={handleInputChange}
             />
+
+            {validationMessages.city != ""
+              ? (
+                <div className="error-message">
+                  <i className="fa fa-exclamation-triangle" aria-hidden="true">
+                  </i>{" "}
+                  {validationMessages.city}
+                </div>
+              )
+              : ""}
           </div>
 
           <div className="form-group">
@@ -153,6 +353,16 @@ export default function RegisterPage() {
               value={formData.street}
               onChange={handleInputChange}
             />
+
+            {validationMessages.street != ""
+              ? (
+                <div className="error-message">
+                  <i className="fa fa-exclamation-triangle" aria-hidden="true">
+                  </i>{" "}
+                  {validationMessages.street}
+                </div>
+              )
+              : ""}
           </div>
 
           <div className="form-group">
@@ -167,6 +377,16 @@ export default function RegisterPage() {
               value={formData.number}
               onChange={handleInputChange}
             />
+
+            {validationMessages.number != ""
+              ? (
+                <div className="error-message">
+                  <i className="fa fa-exclamation-triangle" aria-hidden="true">
+                  </i>{" "}
+                  {validationMessages.number}
+                </div>
+              )
+              : ""}
           </div>
 
           <div className="form-group">
@@ -181,6 +401,16 @@ export default function RegisterPage() {
               value={formData.zipcode}
               onChange={handleInputChange}
             />
+
+            {validationMessages.zipcode != ""
+              ? (
+                <div className="error-message">
+                  <i className="fa fa-exclamation-triangle" aria-hidden="true">
+                  </i>{" "}
+                  {validationMessages.zipcode}
+                </div>
+              )
+              : ""}
           </div>
 
           <button type="submit">Register</button>

@@ -75,3 +75,10 @@
   cursor: pointer;
   font-weight: 700;
 }
+
+.error-message {
+  padding: 0.5rem;
+  margin: 1rem;
+  background-color: red;
+  color: white;
+}
