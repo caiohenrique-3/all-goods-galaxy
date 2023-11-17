@@ -1,8 +1,11 @@
 // dependencies
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 // css
 import "../styles/registerpage.css";
+import "react-toastify/ReactToastify.css";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -159,10 +162,73 @@ export default function RegisterPage() {
     return zipCodeRegex.test(zipCode);
   }
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    setIsSubmitting(true);
+
+    fetch("https://fakestoreapi.com/users", {
+      method: "POST",
+      body: JSON.stringify(
+        {
+          email: formData.email,
+          username: formData.username,
+          password: formData.password,
+          name: {
+            firstname: formData.firstName,
+            lastname: formData.lastName,
+          },
+          address: {
+            city: formData.city,
+            street: formData.street,
+            number: formData.number,
+            zipcode: formData.zipcode,
+            geolocation: {
+              lat: null,
+              long: null,
+            },
+          },
+          phone: formData.phone,
+        },
+      ),
+    })
+      .then((res) => {
+        if (res.ok) {
+          toast.success("Registration success!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+          });
+          setTimeout(() => {
+            navigate("/");
+          }, 3000);
+          return res.json();
+        } else {
+          setIsSubmitting(false);
+          toast.error("Registration failed", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+          });
+          throw new Error("Registration failed");
+        }
+      })
+      .then((json) => console.log(json))
+      .catch((error) => {
+        setIsSubmitting(false);
+        console.error("Error:", error);
+      });
   };
 
   // Making scroll work again
@@ -194,7 +260,11 @@ export default function RegisterPage() {
       </header>
 
       <div className="register-page">
-        <form id="register-form" onClick={handleSubmit} method="post">
+        <form
+          id="register-form"
+          onSubmit={handleSubmit}
+          method="post"
+        >
           <h2>Basic Info</h2>
 
           <div className="form-group">
@@ -427,8 +497,10 @@ export default function RegisterPage() {
               : ""}
           </div>
 
-          <button type="submit">Register</button>
+          <button type="submit" disabled={isSubmitting}>Register</button>
         </form>
+
+        <ToastContainer />
       </div>
     </>
   );

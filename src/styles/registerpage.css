@@ -62,7 +62,7 @@
   box-shadow: 0 0 0.625rem var(--prussian-blue);
 }
 
-.register-page button {
+.register-page form button {
   text-transform: uppercase;
   margin-block-start: 3rem;
   inline-size: 100%;
@@ -71,7 +71,7 @@
   color: white;
 }
 
-.register-page button:hover {
+.register-page form button:hover {
   cursor: pointer;
   font-weight: 700;
 }
