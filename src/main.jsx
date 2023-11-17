@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // components
 import App from "./App.jsx";
-import RegisterPage from "./components/RegisterPage.jsx";
+import RegisterPage from "./routes/RegisterPage.jsx";
 
 const router = createBrowserRouter([
   {
