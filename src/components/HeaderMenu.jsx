@@ -121,7 +121,10 @@ export default function HeaderMenu(props) {
       <div className="account-actions">
         {!userAccount.logged && (
           <>
-            <button type="button" id="login-button">Login</button>
+            <Link to="/login">
+              <button type="button" id="login-button">Login</button>
+            </Link>
+
             <Link to="/register">
               <button type="button" id="register-button">Register</button>
             </Link>
