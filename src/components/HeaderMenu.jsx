@@ -1,11 +1,16 @@
 // dependencies
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+// contexts
+import { UserContext } from "../contexts/userContext";
 
 // css
 import "../styles/headerMenu.css";
 
 export default function HeaderMenu(props) {
+  const { userAccount, setUserAccount } = useContext(UserContext);
+
   useEffect(() => {
     function handleEscKey(event) {
       if (event.keyCode === 27) {
@@ -33,7 +38,9 @@ export default function HeaderMenu(props) {
       <div className="user-header">
         <h4>
           <i className="fa fa-user-circle" aria-hidden="true"></i>
-          Hello. Login into your account
+          {userAccount.logged
+            ? "Hello" + " " + userAccount.username
+            : "Login into your account"}
         </h4>
       </div>
 
@@ -84,12 +91,14 @@ export default function HeaderMenu(props) {
         </li>
       </ul>
 
-      <div className="account-actions">
-        <button type="button" id="login-button">Login</button>
-        <Link to="/register">
-          <button type="button" id="register-button">Register</button>
-        </Link>
-      </div>
+      {!userAccount.logged && (
+        <div className="account-actions">
+          <button type="button" id="login-button">Login</button>
+          <Link to="/register">
+            <button type="button" id="register-button">Register</button>
+          </Link>
+        </div>
+      )}
     </section>
   );
 }

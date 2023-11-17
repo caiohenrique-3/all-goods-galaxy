@@ -7,15 +7,26 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import RegisterPage from "./routes/RegisterPage.jsx";
 
+// contexts
+import { UserProvider } from "./contexts/userContext.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <UserProvider>
+        <App />
+      </UserProvider>
+    ),
   },
 
   {
     path: "/register",
-    element: <RegisterPage />,
+    element: (
+      <UserProvider>
+        <RegisterPage />
+      </UserProvider>
+    ),
   },
 ]);
 

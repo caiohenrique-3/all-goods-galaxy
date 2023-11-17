@@ -298,6 +298,7 @@ export default function RegisterPage() {
               required
               pattern="\w+"
               title="Username should only contain letters, numbers and underscores."
+              maxLength="10"
               value={formData.username}
               onChange={handleInputChange}
             />
