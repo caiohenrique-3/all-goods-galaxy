@@ -115,9 +115,35 @@
   color: black;
 }
 
+.header-menu .account-actions #logout-button i {
+  padding-inline-end: 0.4rem;
+}
+
 .header-menu .user-header,
 .header-menu .account-actions {
   flex: 0 0 auto;
+}
+
+.react-confirm-alert-body {
+  inline-size: 17.5rem !important;
+}
+
+.react-confirm-alert-body h1 {
+  margin-block-end: 1rem;
+}
+
+.react-confirm-alert {
+  max-inline-size: 100%;
+}
+
+.react-confirm-alert-overlay {
+  z-index: 10000 !important;
+}
+
+@media (min-width: 540px) {
+  .react-confirm-alert-body {
+    inline-size: 31.25rem !important;
+  }
 }
 
 @media (min-width: 1030px) {

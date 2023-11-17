@@ -1,12 +1,14 @@
 // dependencies
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
 
 // contexts
 import { UserContext } from "../contexts/userContext";
 
 // css
 import "../styles/headerMenu.css";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 export default function HeaderMenu(props) {
   const { userAccount, setUserAccount } = useContext(UserContext);
@@ -32,6 +34,31 @@ export default function HeaderMenu(props) {
       document.removeEventListener("keydown", handleEscKey);
     };
   }, [props.open]);
+
+  function handleLogoutClick() {
+    confirmAlert({
+      title: "Confirm to logout",
+      message: "Are you sure?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            localStorage.removeItem("username");
+            setUserAccount((prevUserAccount) => ({
+              ...prevUserAccount,
+              username: "",
+              logged: false,
+            }));
+            props.setHeaderMenuIsOpen(false);
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+  }
 
   return (
     <section className="header-menu">
@@ -91,14 +118,22 @@ export default function HeaderMenu(props) {
         </li>
       </ul>
 
-      {!userAccount.logged && (
-        <div className="account-actions">
-          <button type="button" id="login-button">Login</button>
-          <Link to="/register">
-            <button type="button" id="register-button">Register</button>
-          </Link>
-        </div>
-      )}
+      <div className="account-actions">
+        {!userAccount.logged && (
+          <>
+            <button type="button" id="login-button">Login</button>
+            <Link to="/register">
+              <button type="button" id="register-button">Register</button>
+            </Link>
+          </>
+        )}
+
+        {userAccount.logged && (
+          <button type="button" id="logout-button" onClick={handleLogoutClick}>
+            <i className="fa fa-user-times" aria-hidden="true"></i> Logout
+          </button>
+        )}
+      </div>
     </section>
   );
 }
