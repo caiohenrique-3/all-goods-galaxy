@@ -5,8 +5,8 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [userAccount, setUserAccount] = useState({
-    logged: false,
-    username: "test",
+    logged: Boolean(localStorage.getItem("username")),
+    username: localStorage.getItem("username") || "",
   });
 
   return (

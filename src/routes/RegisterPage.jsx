@@ -1,13 +1,18 @@
 // dependencies
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+
+// contexts
+import { UserContext } from "../contexts/userContext";
 
 // css
 import "../styles/registerpage.css";
 import "react-toastify/ReactToastify.css";
 
 export default function RegisterPage() {
+  const { userAccount, setUserAccount } = useContext(UserContext);
+
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -206,9 +211,20 @@ export default function RegisterPage() {
             draggable: true,
             progress: undefined,
           });
+
           setTimeout(() => {
             navigate("/");
           }, 3000);
+
+          localStorage.setItem("username", formData.username);
+
+          // Auto-login on register
+          setUserAccount((prevUserAccount) => ({
+            ...prevUserAccount,
+            username: formData.username,
+            logged: true,
+          }));
+
           return res.json();
         } else {
           setIsSubmitting(false);
