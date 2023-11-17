@@ -170,6 +170,20 @@ export default function RegisterPage() {
     document.querySelector("body").style.overflowY = "auto";
   }, []);
 
+  // Workaround for error messages showing on page load
+  useEffect(() => {
+    const fieldsToReset = ["firstName", "lastName", "city", "street"];
+
+    // Reset validation messages for each field
+    setValidationMessages((prevMessages) => {
+      const updatedMessages = { ...prevMessages };
+      fieldsToReset.forEach((field) => {
+        updatedMessages[field] = "";
+      });
+      return updatedMessages;
+    });
+  }, []);
+
   return (
     <>
       <header id="register-page-header">
