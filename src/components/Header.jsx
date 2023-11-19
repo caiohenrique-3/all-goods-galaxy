@@ -2,13 +2,19 @@
 import HeaderMenu from "./HeaderMenu";
 
 // dependencies
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// contexts
+import { UserContext } from "../contexts/userContext";
 
 // css
 import "../styles/header.css";
 
 export default function Header() {
   const [headerMenuIsOpen, setHeaderMenuIsOpen] = useState(false);
+  const { userAccount, setUserAccount } = useContext(UserContext);
+  const navigate = useNavigate();
 
   function handleHeaderMenuClick() {
     setHeaderMenuIsOpen((prev) => !prev);
@@ -36,6 +42,14 @@ export default function Header() {
     window.addEventListener("resize", handlePageResize);
     return () => window.removeEventListener("resize", handlePageResize);
   }, [headerMenuIsOpen]);
+
+  function handleCartClick() {
+    if (!userAccount.logged) {
+      navigate("/login");
+    } else {
+      console.log("clicked!");
+    }
+  }
 
   return (
     <>
@@ -69,7 +83,7 @@ export default function Header() {
           </button>
         </form>
 
-        <a href="" id="shopping-cart">
+        <a id="shopping-cart" onClick={handleCartClick}>
           <i
             className="fa fa-shopping-cart"
             aria-label="Check your shopping cart"

@@ -88,4 +88,8 @@ header #side-menu-button:hover {
   header #shopping-cart {
     padding-inline-end: 1.5rem;
   }
+
+  header #shopping-cart:hover {
+    cursor: pointer;
+  }
 }
