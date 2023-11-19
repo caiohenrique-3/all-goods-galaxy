@@ -49,7 +49,7 @@ export default function LoginPage() {
           ...prevMessages,
           password: isValidPassword(value)
             ? ""
-            : "Password should be at least 8 characters",
+            : "Password should be at least 7 characters",
         }));
         break;
 
@@ -185,7 +185,7 @@ export default function LoginPage() {
               name="password"
               required
               pattern=".{7,}"
-              title="Password should be at least 8 characters long."
+              title="Password should be at least 7 characters long."
               value={formData.password}
               onChange={handleInputChange}
             />

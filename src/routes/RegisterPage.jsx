@@ -68,7 +68,7 @@ export default function RegisterPage() {
           ...prevMessages,
           password: isValidPassword(value)
             ? ""
-            : "Password should be at least 8 characters",
+            : "Password should be at least 7 characters",
         }));
         break;
 
@@ -139,7 +139,7 @@ export default function RegisterPage() {
   }
 
   function isValidPassword(password) {
-    return password.length >= 8;
+    return password.length >= 7;
   }
 
   function isValidName(name) {
@@ -337,8 +337,8 @@ export default function RegisterPage() {
               id="password"
               name="password"
               required
-              pattern=".{8,}"
-              title="Password should be at least 8 characters long."
+              pattern=".{7,}"
+              title="Password should be at least 7 characters long."
               value={formData.password}
               onChange={handleInputChange}
             />
