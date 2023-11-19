@@ -43,8 +43,7 @@ export default function HeaderMenu(props) {
         {
           label: "Yes",
           onClick: () => {
-            localStorage.removeItem("username");
-            localStorage.removeItem("token");
+            localStorage.clear();
             setUserAccount((prevUserAccount) => ({
               ...prevUserAccount,
               username: "",

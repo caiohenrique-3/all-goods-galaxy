@@ -216,12 +216,42 @@ export default function RegisterPage() {
             navigate("/");
           }, 3000);
 
-          localStorage.setItem("username", formData.username);
+          const keysToStore = [
+            "username",
+            "email",
+            "firstName",
+            "lastName",
+            "city",
+            "street",
+            "number",
+            "zipcode",
+            "phone",
+          ];
 
-          // Auto-login on register
+          // Remembering created account through sessions
+          keysToStore.forEach((key) => {
+            localStorage.setItem(key, formData[key]);
+          });
+
+          // Update userAccount context with values from formData
+          setUserAccount((prevUserAccount) => {
+            const updatedUserAccount = { ...prevUserAccount };
+
+            keysToStore.forEach((key) => {
+              updatedUserAccount[key] = formData[key];
+            });
+
+            return updatedUserAccount;
+          });
+
+          // Calling it again to update some variables
           setUserAccount((prevUserAccount) => ({
             ...prevUserAccount,
-            username: formData.username,
+            name: {
+              ...prevUserAccount.name,
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+            },
             logged: true,
           }));
 
