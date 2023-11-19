@@ -4,6 +4,9 @@ import { register } from "swiper/element/bundle";
 
 register();
 
+// components
+import ProductActions from "./ProductActions";
+
 // css
 import "../styles/toprated.css";
 
@@ -46,14 +49,7 @@ export default function TopRated(props) {
                 {product.rating} <span>({generateRandomCount(5, 300)})</span>
               </p>
             </div>
-            <div className="actions">
-              <a href="">
-                <i className="fa fa-heart"></i>
-              </a>
-              <a href="">
-                <i className="fa fa-cart-plus"></i>
-              </a>
-            </div>
+            <ProductActions />
           </div>
 
           <div className="details-container">

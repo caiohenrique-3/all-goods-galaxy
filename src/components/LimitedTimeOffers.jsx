@@ -4,6 +4,9 @@ import { register } from "swiper/element/bundle";
 
 register();
 
+// components
+import ProductActions from "./ProductActions";
+
 // css
 import "../styles/limitedtimeoffers.css";
 
@@ -80,14 +83,7 @@ export default function LimitedTimeOffers(props) {
                 {discounts[index]}%
               </p>
             </div>
-            <div className="actions">
-              <a href="">
-                <i className="fa fa-heart"></i>
-              </a>
-              <a href="">
-                <i className="fa fa-cart-plus"></i>
-              </a>
-            </div>
+            <ProductActions />
           </div>
 
           <div className="details-container">
