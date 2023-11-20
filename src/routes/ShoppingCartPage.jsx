@@ -45,6 +45,25 @@ export default function ShoppingCartPage() {
       });
   }, [userAccount.id]);
 
+  // Changing item quantity
+  function handleQuantityChange(id, change) {
+    setCartItems((prevItems) =>
+      prevItems.map((item) => {
+        if (item.id === id) {
+          if (item.quantity + change === 0) {
+            if (
+              window.confirm("Do you want to delete this item from your cart?")
+            ) {
+              return null;
+            }
+          }
+          return { ...item, quantity: item.quantity + change };
+        }
+        return item;
+      }).filter(Boolean) // Filter out null items
+    );
+  }
+
   // Calculating cart items total quantity and total price
   const totalQuantity = cartItems.reduce(
     (total, item) => total + item.quantity,
@@ -100,8 +119,18 @@ export default function ShoppingCartPage() {
 
             <p id="quantity">{item.quantity}</p>
 
-            <button type="button">-</button>
-            <button type="button">+</button>
+            <button
+              type="button"
+              onClick={() => handleQuantityChange(item.id, -1)}
+            >
+              -
+            </button>
+            <button
+              type="button"
+              onClick={() => handleQuantityChange(item.id, 1)}
+            >
+              +
+            </button>
           </div>
 
           <p id="total-price">
