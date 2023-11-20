@@ -171,9 +171,47 @@ export default function RegisterPage() {
   const navigate = useNavigate();
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Waiting for the response before going ahead
+    const response = await fetch("https://fakestoreapi.com/users");
+    const users = await response.json();
+
+    // Check if email or username already exists
+    const isEmailExists = users.some((user) => user.email === formData.email);
+    const isUsernameExists = users.some((user) =>
+      user.username === formData.username
+    );
+
+    if (isEmailExists) {
+      setIsSubmitting(false);
+      toast.error("Email already exists", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
+    if (isUsernameExists) {
+      setIsSubmitting(false);
+      toast.error("Username already exists", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
 
     fetch("https://fakestoreapi.com/users", {
       method: "POST",

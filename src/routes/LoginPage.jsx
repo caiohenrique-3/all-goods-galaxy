@@ -76,7 +76,7 @@ export default function LoginPage() {
       .then((accounts) => {
         accounts.forEach((account) => {
           console.log(
-            `Username: ${account.username}, Password: ${account.password}`,
+            `Username: ${account.username}, Password: ${account.password}, Email: ${account.email}`,
           );
         });
       });
