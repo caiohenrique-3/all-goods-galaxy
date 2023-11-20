@@ -29,12 +29,15 @@ export default function ShoppingCartPage() {
         }
         const cartData = JSON.parse(data);
         if (cartData && cartData.length > 0 && cartData[0].products) {
+          const randomNumOfItemsInStock = Math.floor(Math.random() * 14) + 2;
+
           const productPromises = cartData[0].products.map((product) =>
             fetch(`https://fakestoreapi.com/products/${product.productId}`)
               .then((res) => res.json())
               .then((productData) => ({
                 ...productData,
-                quantity: product.quantity,
+                quantity: Math.min(product.quantity, randomNumOfItemsInStock),
+                stock: randomNumOfItemsInStock,
               }))
           );
           Promise.all(productPromises)
@@ -46,6 +49,7 @@ export default function ShoppingCartPage() {
       })
       .catch((error) => {
         console.error("Error fetching cart data:", error);
+        setIsLoading(false);
       });
   }, [userAccount.id]);
 
@@ -61,8 +65,11 @@ export default function ShoppingCartPage() {
     setCartItems((prevItems) =>
       prevItems.map((item) => {
         if (item.id === id) {
-          // Ensure the quantity doesn't go below 1
-          const newQuantity = Math.max(1, item.quantity + change);
+          // Ensure the quantity doesn't go below 1 or above the stock
+          const newQuantity = Math.min(
+            Math.max(1, item.quantity + change),
+            item.stock,
+          );
           return { ...item, quantity: newQuantity };
         }
         return item;
@@ -117,6 +124,11 @@ export default function ShoppingCartPage() {
 
       {cartItems.map((item) => (
         <div key={item.id} className="product">
+          <p id="available-in-stock">
+            <span style={{ color: "var(--sky-blue)" }}>{item.stock}</span>{" "}
+            available in stock
+          </p>
+
           <button
             type="button"
             aria-label="Remove item from the cart"
