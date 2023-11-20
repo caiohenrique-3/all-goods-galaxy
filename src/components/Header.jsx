@@ -47,7 +47,7 @@ export default function Header() {
     if (!userAccount.logged) {
       navigate("/login");
     } else {
-      console.log("clicked!");
+      navigate("/shopping-cart");
     }
   }
 

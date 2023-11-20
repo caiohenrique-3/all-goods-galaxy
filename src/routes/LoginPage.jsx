@@ -71,7 +71,15 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("Real account for testing the API login: johnd - m38rmF$");
+    fetch("https://fakestoreapi.com/users")
+      .then((res) => res.json())
+      .then((accounts) => {
+        accounts.forEach((account) => {
+          console.log(
+            `Username: ${account.username}, Password: ${account.password}`,
+          );
+        });
+      });
   }, []);
 
   // Handle form submission

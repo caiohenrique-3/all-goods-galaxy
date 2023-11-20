@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import RegisterPage from "./routes/RegisterPage.jsx";
 import LoginPage from "./routes/LoginPage.jsx";
+import ShoppingCartPage from "./routes/ShoppingCartPage.jsx";
 
 // contexts
 import { UserProvider } from "./contexts/userContext.jsx";
@@ -35,6 +36,15 @@ const router = createBrowserRouter([
     element: (
       <UserProvider>
         <LoginPage />
+      </UserProvider>
+    ),
+  },
+
+  {
+    path: "/shopping-cart",
+    element: (
+      <UserProvider>
+        <ShoppingCartPage />
       </UserProvider>
     ),
   },
