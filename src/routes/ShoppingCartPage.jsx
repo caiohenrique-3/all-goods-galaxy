@@ -10,8 +10,11 @@ import "../styles/shoppingcartpage.css";
 export default function ShoppingCartPage() {
   const { userAccount, setUserAccount } = useContext(UserContext);
   const [cartItems, setCartItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
+
     fetch(`https://fakestoreapi.com/carts/user/${userAccount.id}`)
       .then((res) => {
         if (!res.ok || res.status !== 200) {
@@ -39,6 +42,7 @@ export default function ShoppingCartPage() {
         } else {
           console.error("Invalid cart data:", cartData);
         }
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching cart data:", error);
@@ -103,6 +107,17 @@ export default function ShoppingCartPage() {
           Buy
           <i className="fa fa-angle-right" aria-hidden="true"></i>
         </button>
+      )}
+
+      {isLoading && (
+        <div>
+          <i
+            className="fa fa-refresh fa-spin fa-3x fa-fw"
+            style={{ color: "var(--ut-orange)", marginTop: "5rem"}}
+          >
+          </i>
+          <span className="sr-only">Loading...</span>
+        </div>
       )}
 
       {cartItems.map((item) => (
