@@ -45,6 +45,13 @@ export default function ShoppingCartPage() {
       });
   }, [userAccount.id]);
 
+  // Handling item removal
+  function handleRemoveItem(id, itemName) {
+    if (window.confirm(`Do you want to remove ${itemName} from your cart?`)) {
+      setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    }
+  }
+
   // Changing item quantity
   function handleQuantityChange(id, change) {
     setCartItems((prevItems) =>
@@ -104,6 +111,7 @@ export default function ShoppingCartPage() {
             type="button"
             aria-label="Remove item from the cart"
             id="remove-item-button"
+            onClick={() => handleRemoveItem(item.id, item.title)}
           >
             <i className="fa fa-trash" aria-hidden="true"></i>
           </button>
