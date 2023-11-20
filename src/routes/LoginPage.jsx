@@ -49,7 +49,7 @@ export default function LoginPage() {
           ...prevMessages,
           password: isValidPassword(value)
             ? ""
-            : "Password should be at least 7 characters",
+            : "Password should be at least 6 characters",
         }));
         break;
 
@@ -64,7 +64,7 @@ export default function LoginPage() {
   }
 
   function isValidPassword(password) {
-    return password.length >= 7;
+    return password.length >= 6;
   }
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -192,8 +192,8 @@ export default function LoginPage() {
               id="password"
               name="password"
               required
-              pattern=".{7,}"
-              title="Password should be at least 7 characters long."
+              pattern=".{6,}"
+              title="Password should be at least 6 characters long."
               value={formData.password}
               onChange={handleInputChange}
             />
