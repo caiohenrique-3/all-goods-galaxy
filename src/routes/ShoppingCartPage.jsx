@@ -15,50 +15,52 @@ export default function ShoppingCartPage() {
   useEffect(() => {
     setIsLoading(true);
 
-    fetch(`https://fakestoreapi.com/carts/user/${userAccount.id}`)
-      .then((res) => {
-        if (!res.ok || res.status !== 200) {
-          throw new Error("Failed to fetch cart data");
-        }
-        return res.text();
-      })
-      .then((data) => {
-        if (!data) {
-          console.error("Empty response from server");
-          return;
-        }
-        const cartData = JSON.parse(data);
-        if (cartData && cartData.length > 0 && cartData[0].products) {
-          const productPromises = cartData[0].products.map((product) => {
-            const randomNumOfItemsInStock = Math.floor(Math.random() * 14) + 2;
+    if (
+      userAccount.cartItems.productIds &&
+      userAccount.cartItems.productIds.length > 0
+    ) {
+      const productPromises = userAccount.cartItems.productIds.map(
+        (productId) => {
+          const randomNumOfItemsInStock = Math.floor(Math.random() * 14) + 2;
 
-            return fetch(
-              `https://fakestoreapi.com/products/${product.productId}`,
-            )
-              .then((res) => res.json())
-              .then((productData) => ({
-                ...productData,
-                quantity: Math.min(product.quantity, randomNumOfItemsInStock),
-                stock: randomNumOfItemsInStock,
-              }));
-          });
-          Promise.all(productPromises)
-            .then((products) => setCartItems(products));
-        } else {
-          console.error("Invalid cart data:", cartData);
-        }
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching cart data:", error);
-        setIsLoading(false);
-      });
+          return fetch(`https://fakestoreapi.com/products/${productId}`)
+            .then((res) => res.json())
+            .then((productData) => ({
+              ...productData,
+              quantity: 1,
+              stock: randomNumOfItemsInStock,
+            }));
+        },
+      );
+
+      Promise.all(productPromises)
+        .then((products) => setCartItems(products))
+        .catch((error) => {
+          console.error("Error fetching product data:", error);
+        });
+    } else {
+      console.log("No items in the cart");
+    }
+
+    setIsLoading(false);
   }, [userAccount.id]);
 
   // Handling item removal
   function handleRemoveItem(id, itemName) {
     if (window.confirm(`Do you want to remove ${itemName} from your cart?`)) {
+      // Remove item from cartItems state
       setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+
+      // Remove item from userAccount context
+      setUserAccount((prevUserAccount) => {
+        const updatedCartItems = prevUserAccount.cartItems.productIds.filter((
+          productId,
+        ) => productId !== id);
+        return {
+          ...prevUserAccount,
+          cartItems: { productIds: updatedCartItems },
+        };
+      });
     }
   }
 
@@ -89,6 +91,11 @@ export default function ShoppingCartPage() {
     (total, item) => total + (item.price * item.quantity),
     0,
   );
+
+  // Updating localStorage with our new changes
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(userAccount.cartItems));
+  }, [userAccount.cartItems]);
 
   return (
     <div className="shopping-cart-page">

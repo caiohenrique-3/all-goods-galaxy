@@ -49,7 +49,7 @@ export default function TopRated(props) {
                 {product.rating} <span>({generateRandomCount(5, 300)})</span>
               </p>
             </div>
-            <ProductActions />
+            <ProductActions productId={product.id} />
           </div>
 
           <div className="details-container">

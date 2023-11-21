@@ -83,7 +83,7 @@ export default function LimitedTimeOffers(props) {
                 {discounts[index]}%
               </p>
             </div>
-            <ProductActions />
+            <ProductActions productId={product.id} />
           </div>
 
           <div className="details-container">
