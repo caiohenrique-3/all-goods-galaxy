@@ -29,17 +29,19 @@ export default function ShoppingCartPage() {
         }
         const cartData = JSON.parse(data);
         if (cartData && cartData.length > 0 && cartData[0].products) {
-          const randomNumOfItemsInStock = Math.floor(Math.random() * 14) + 2;
+          const productPromises = cartData[0].products.map((product) => {
+            const randomNumOfItemsInStock = Math.floor(Math.random() * 14) + 2;
 
-          const productPromises = cartData[0].products.map((product) =>
-            fetch(`https://fakestoreapi.com/products/${product.productId}`)
+            return fetch(
+              `https://fakestoreapi.com/products/${product.productId}`,
+            )
               .then((res) => res.json())
               .then((productData) => ({
                 ...productData,
                 quantity: Math.min(product.quantity, randomNumOfItemsInStock),
                 stock: randomNumOfItemsInStock,
-              }))
-          );
+              }));
+          });
           Promise.all(productPromises)
             .then((products) => setCartItems(products));
         } else {
