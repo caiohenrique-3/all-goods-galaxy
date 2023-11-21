@@ -173,6 +173,40 @@
   font-weight: 700;
 }
 
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+}
+
+.modal-content {
+  inline-size: 80%;
+  max-inline-size: 31.25rem;
+  z-index: 100000;
+  text-align: center;
+}
+
+.modal-content img {
+  inline-size: 100%;
+  block-size: auto;
+}
+
+.close-button {
+  margin-block-start: 1rem;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: black;
+  text-transform: uppercase;
+}
+
 @media (min-width: 480px) {
   #limited-time-offers .product-container {
     block-size: 16.75rem;

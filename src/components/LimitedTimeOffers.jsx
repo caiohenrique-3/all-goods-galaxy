@@ -72,6 +72,32 @@ export default function LimitedTimeOffers(props) {
     }`;
   }
 
+  // Opening big image when clicking the product
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState("");
+
+  function openImageModal(image) {
+    setCurrentImage(image);
+    setIsModalOpen(true);
+  }
+
+  function closeImageModal() {
+    setCurrentImage("");
+    setIsModalOpen(false);
+  }
+
+  // Pressing ESC makes it close
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.keyCode === 27) closeImageModal();
+    };
+    window.addEventListener("keydown", handleEsc);
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
+
   const productElements = props.products.map((product, index) => (
     <swiper-slide lazy="true" key={product.id}>
       <div className="product">
@@ -88,7 +114,13 @@ export default function LimitedTimeOffers(props) {
 
           <div className="details-container">
             <div className="details">
-              <img src={product.image} alt={product.title} loading="lazy" />
+              <img
+                src={product.image}
+                alt={product.title}
+                loading="lazy"
+                onClick={() =>
+                  openImageModal(product.image)}
+              />
             </div>
 
             <div className="text-details">
@@ -179,6 +211,25 @@ export default function LimitedTimeOffers(props) {
       <a href="" id="show-all">
         <i className="fa fa-external-link" aria-hidden="true"></i> Show All
       </a>
+
+      {isModalOpen && (
+        <div className="modal-background" onClick={closeImageModal}>
+          <div
+            className="modal-content"
+            onClick={(e) =>
+              e.stopPropagation()}
+          >
+            <img src={currentImage} alt="" />
+            <button
+              type="button"
+              className="close-button"
+              onClick={closeImageModal}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
