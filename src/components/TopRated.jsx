@@ -28,6 +28,7 @@ export default function TopRated(props) {
     const productsWithRatings = props.products.map((product) => ({
       ...product,
       rating: generateRandomRating(),
+      count: generateRandomCount(5, 300),
     }));
 
     // Sort products by rating in descending order
@@ -72,7 +73,7 @@ export default function TopRated(props) {
             <div className="rating">
               <p>
                 <i className="fa fa-star" aria-hidden="true"></i>
-                {product.rating} <span>({generateRandomCount(5, 300)})</span>
+                {product.rating} <span>({product.count})</span>
               </p>
             </div>
             <ProductActions productId={product.id} />
