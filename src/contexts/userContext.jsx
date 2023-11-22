@@ -24,6 +24,8 @@ const UserProvider = ({ children }) => {
     phone: localStorage.getItem("phone") || "",
     cartItems: JSON.parse(localStorage.getItem("cartItems")) ||
       { productIds: [] },
+    favorites: JSON.parse(localStorage.getItem("favorites")) ||
+      { productIds: [] },
   });
 
   // fetching data from fakestoreapi

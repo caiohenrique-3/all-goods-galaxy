@@ -8,6 +8,7 @@ import App from "./App.jsx";
 import RegisterPage from "./routes/RegisterPage.jsx";
 import LoginPage from "./routes/LoginPage.jsx";
 import ShoppingCartPage from "./routes/ShoppingCartPage.jsx";
+import FavoritesPage from "./routes/FavoritesPage.jsx";
 
 // contexts
 import { UserProvider } from "./contexts/userContext.jsx";
@@ -45,6 +46,15 @@ const router = createBrowserRouter([
     element: (
       <UserProvider>
         <ShoppingCartPage />
+      </UserProvider>
+    ),
+  },
+
+  {
+    path: "/favorites",
+    element: (
+      <UserProvider>
+        <FavoritesPage />
       </UserProvider>
     ),
   },

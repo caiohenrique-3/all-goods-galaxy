@@ -9,7 +9,7 @@ export default function ProductActions(props) {
   const { userAccount, setUserAccount } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // Shopping Cart actions
+  // Cart actions
   function isProductInCart(productId) {
     return Array.isArray(userAccount.cartItems.productIds) &&
       userAccount.cartItems.productIds.includes(productId);
@@ -41,11 +41,47 @@ export default function ProductActions(props) {
     }));
   }
 
+  // Favorites actions
+  function isProductInFavorites(productId) {
+    return Array.isArray(userAccount.favorites.productIds) &&
+      userAccount.favorites.productIds.includes(productId);
+  }
+
+  function addToFavorites(productId) {
+    const updatedFavorites = {
+      ...userAccount.favorites,
+      productIds: [...userAccount.favorites.productIds, productId],
+    };
+
+    setUserAccount((prevUserAccount) => ({
+      ...prevUserAccount,
+      favorites: updatedFavorites,
+    }));
+  }
+
+  function removeFromFavorites(productId) {
+    const updatedFavorites = {
+      ...userAccount.favorites,
+      productIds: userAccount.favorites.productIds.filter(
+        (id) => id !== productId,
+      ),
+    };
+
+    setUserAccount((prevUserAccount) => ({
+      ...prevUserAccount,
+      favorites: updatedFavorites,
+    }));
+  }
+
   function handleHeartClick() {
     if (!userAccount.logged) {
       navigate("/login");
     } else {
-      console.log("clicked!");
+      if (isProductInFavorites(props.productId)) {
+        removeFromFavorites(props.productId);
+      } else {
+        addToFavorites(props.productId);
+      }
     }
   }
 
@@ -66,10 +102,21 @@ export default function ProductActions(props) {
     localStorage.setItem("cartItems", JSON.stringify(userAccount.cartItems));
   }, [userAccount.cartItems]);
 
+  // Updating localStorage with our new favorites
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(userAccount.favorites));
+  }, [userAccount.favorites]);
+
   return (
     <div className="actions">
       <a onClick={handleHeartClick}>
-        <i className="fa fa-heart"></i>
+        <i
+          className="fa fa-heart"
+          style={{
+            color: isProductInFavorites(props.productId) ? "red" : "white",
+          }}
+        >
+        </i>
       </a>
 
       <a onClick={handleAddToCartClick}>

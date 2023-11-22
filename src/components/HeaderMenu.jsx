@@ -112,7 +112,7 @@ export default function HeaderMenu(props) {
         </li>
 
         <li>
-          <a href="">
+          <a href="/favorites">
             <i className="fa fa-heart" aria-hidden="true"></i> Favorites
           </a>
         </li>
