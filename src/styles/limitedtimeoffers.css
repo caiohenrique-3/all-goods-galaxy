@@ -75,6 +75,10 @@
   block-size: 5.75rem;
 }
 
+#limited-time-offers .product .details img:hover {
+  cursor: pointer;
+}
+
 #limited-time-offers .product .text-details h3 {
   font-size: 0.8rem;
   margin-block-end: 0.5rem;
@@ -114,7 +118,12 @@
   padding: 0.5rem;
 }
 
-#limited-time-offers .product:hover {
+#limited-time-offers .product .actions #favorite-button i:hover {
+  cursor: pointer;
+  color: lightcoral !important;
+}
+
+#limited-time-offers .product .actions:hover {
   cursor: pointer;
 }
 

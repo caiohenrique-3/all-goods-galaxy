@@ -109,7 +109,7 @@ export default function ProductActions(props) {
 
   return (
     <div className="actions">
-      <a onClick={handleHeartClick}>
+      <a onClick={handleHeartClick} id="favorite-button">
         <i
           className="fa fa-heart"
           style={{
@@ -119,7 +119,7 @@ export default function ProductActions(props) {
         </i>
       </a>
 
-      <a onClick={handleAddToCartClick}>
+      <a onClick={handleAddToCartClick} id="cart-button">
         <i
           className={`fa ${
             isProductInCart(props.productId)

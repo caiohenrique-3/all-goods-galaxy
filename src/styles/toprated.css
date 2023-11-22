@@ -83,6 +83,10 @@
   block-size: 5.75rem;
 }
 
+#top-rated .product .details img:hover {
+  cursor: pointer;
+}
+
 #top-rated .product .text-details h3 {
   font-size: 0.8rem;
   margin-block-end: 0.5rem;
@@ -117,12 +121,13 @@
   padding: 0.5rem;
 }
 
-#top-rated .product:hover {
+#top-rated #favorite-button i:hover {
   cursor: pointer;
+  color: lightcoral !important;
 }
 
-#top-rated .product a {
-  color: white;
+#top-rated .product .actions:hover {
+  cursor: pointer;
 }
 
 #top-rated .product a:hover {
