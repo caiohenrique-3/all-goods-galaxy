@@ -7,7 +7,7 @@ import { UserContext } from "../contexts/userContext";
 // css
 import "../styles/favoritespage.css";
 
-export default function ShoppingCartPage() {
+export default function FavoritesPage() {
   const { userAccount, setUserAccount } = useContext(UserContext);
   const [favoriteItems, setFavoriteItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
