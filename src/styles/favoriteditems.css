@@ -1,0 +1,129 @@
+#favorited-items {
+  inline-size: 100%;
+  max-inline-size: 90rem;
+  margin-block-start: 2rem;
+  margin-block-end: 2.5rem;
+}
+
+#favorited-items .heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inline-size: 100%;
+  padding-block: 2.5rem;
+  margin-block-end: 1rem;
+  background-color: var(--prussian-blue);
+  color: white;
+}
+
+#favorited-items .heading h4 {
+  text-transform: uppercase;
+}
+
+#favorited-items .heading i {
+  padding-inline-end: 0.5rem;
+}
+
+#favorited-items .product-container {
+  position: relative;
+  block-size: 12.5rem;
+  margin: 0.5rem;
+  padding: 1rem;
+  border-radius: 0.313rem;
+  background-color: var(--prussian-blue);
+  color: white;
+}
+
+#favorited-items .product .top-elements {
+  display: flex;
+  margin-block-end: 1rem;
+}
+
+#favorited-items .product .actions {
+  margin-inline-start: auto;
+  text-align: right;
+}
+
+#favorited-items .product .actions i {
+  padding-inline: 0.3rem;
+  padding-block-end: 1rem;
+  font-size: 1.2rem;
+}
+
+#favorited-items .product .details-container {
+  display: flex;
+}
+
+#favorited-items .product .details {
+  padding-inline-end: 1rem;
+}
+
+#favorited-items .product .details img {
+  inline-size: 7rem;
+  block-size: 5.75rem;
+}
+
+#favorited-items .product .details img:hover {
+  cursor: pointer;
+}
+
+#favorited-items .product .text-details h3 {
+  font-size: 0.8rem;
+  margin-block-end: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  word-wrap: nowrap;
+  block-size: 3rem;
+}
+
+#favorited-items .product .text-details h4 {
+  font-size: 1.3rem;
+  padding: 0 0 1rem 0;
+}
+
+#favorited-items .product .text-details #new-price {
+  font-weight: 700;
+  color: var(--ut-orange);
+}
+
+#favorited-items #favorite-button i:hover {
+  cursor: pointer;
+  color: lightcoral !important;
+}
+
+#favorited-items .product .actions:hover {
+  cursor: pointer;
+}
+
+#favorited-items .product a:hover {
+  color: var(--selective-yellow);
+}
+
+#favorited-items #show-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-block: 2.5rem;
+  color: var(--prussian-blue);
+}
+
+#favorited-items #show-all i {
+  vertical-align: middle;
+  padding-inline-end: 0.3rem;
+}
+
+#favorited-items #show-all:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+@media (min-width: 480px) {
+  #favorited-items .product .details img {
+    inline-size: 9rem;
+    block-size: 6.75rem;
+  }
+}
