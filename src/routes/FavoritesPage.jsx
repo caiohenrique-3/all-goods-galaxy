@@ -21,14 +21,10 @@ export default function ShoppingCartPage() {
     ) {
       const productPromises = userAccount.favorites.productIds.map(
         (productId) => {
-          const randomNumOfItemsInStock = Math.floor(Math.random() * 14) + 2;
-
           return fetch(`https://fakestoreapi.com/products/${productId}`)
             .then((res) => res.json())
             .then((productData) => ({
               ...productData,
-              quantity: 1,
-              stock: randomNumOfItemsInStock,
             }));
         },
       );
